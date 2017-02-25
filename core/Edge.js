@@ -2,6 +2,9 @@
 
 class Edge {
     constructor(node, cost) {
+        /**
+         * The node that this edge leads to.
+         */
         this.node = node;
         
         /**

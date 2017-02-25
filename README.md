@@ -46,6 +46,6 @@ graph.addEdge(d, a, 1, false);
 graph.addEdge(a, c, 1, true);
 
 // a → b
-// ↑ \ ↓
+// ↑ ⤡ ↓
 // d ← c
 ```
