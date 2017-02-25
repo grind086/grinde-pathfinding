@@ -1,0 +1,16 @@
+{
+  "name": "grinde-pathfinding",
+  "version": "1.0.0",
+  "description": "Pathfinding library",
+  "main": "index.js",
+  "author": "Rob Grindeland",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/grind086/grinde-pathfinding.git"
+  },
+  "bugs": {
+    "url": "https://github.com/grind086/grinde-pathfinding/issues"
+  },
+  "homepage": "https://github.com/grind086/grinde-pathfinding#readme"
+}
