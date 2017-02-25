@@ -7,12 +7,14 @@ var Options = require('options'),
 const SQRT2 = Math.sqrt(2);
 
 class Graph {
-    constructor(w, h) {
-        this.w = w;
-        this.h = h;
-        
+    constructor() {
         this.nodes = [];
         this.edges = [];
+    }
+    
+    addNode(x, y) {
+        var i = this.nodes.length;
+        return (this.nodes[i] = new Node(i, x, y));
     }
     
     addEdge(a, b, cost, bi) {
@@ -30,7 +32,7 @@ class Graph {
             costfn: (a, b) => (a.x === b.x || a.y === b.y) ? 1 : SQRT2
         }).merge(options);
         
-        var graph = new Graph(w, h),
+        var graph = new Graph(),
             allowDiagonal = opts.value.allowDiagonal,
             costfn = opts.value.costfn,
             i = 0;
@@ -45,7 +47,7 @@ class Graph {
         }
         
         var gridEdge = (a, bx, by) => {
-            let b = graph.nodes[by * graph.w + bx];
+            let b = graph.nodes[by * w + bx];
             let c = costfn(a, b);
             if (c > 0) graph.addEdge(a, b, c, false);
         };
@@ -56,19 +58,19 @@ class Graph {
             for (x = 0; x < w; x++) {
                 node = graph.nodes[i];
                 
-                if (x > 0)           gridEdge(node, x - 1, y);
-                if (y > 0)           gridEdge(node, x, y - 1);
-                if (x < graph.w - 1) gridEdge(node, x + 1, y);
-                if (y < graph.h - 1) gridEdge(node, x, y + 1);
+                if (x > 0)     gridEdge(node, x - 1, y);
+                if (y > 0)     gridEdge(node, x, y - 1);
+                if (x < w - 1) gridEdge(node, x + 1, y);
+                if (y < h - 1) gridEdge(node, x, y + 1);
                 
                 if (allowDiagonal) {
                     if (x > 0) {
-                        if (y > 0)           gridEdge(node, x - 1, y - 1);
-                        if (y < graph.h - 1) gridEdge(node, x - 1, y + 1);
+                        if (y > 0)     gridEdge(node, x - 1, y - 1);
+                        if (y < h - 1) gridEdge(node, x - 1, y + 1);
                     }
-                    if (x < graph.w - 1) {
-                        if (y > 0)           gridEdge(node, x + 1, y - 1);
-                        if (y < graph.h - 1) gridEdge(node, x + 1, y + 1);
+                    if (x < w - 1) {
+                        if (y > 0)     gridEdge(node, x + 1, y - 1);
+                        if (y < h - 1) gridEdge(node, x + 1, y + 1);
                     }
                 }
                 
