@@ -49,3 +49,7 @@ graph.addEdge(a, c, 1, true);
 // ↑ ⤡ ↓
 // d ← c
 ```
+
+### TODO
+
+* Implement bi-directional A*
